@@ -1,3 +1,5 @@
 module ExhaustPipe
-  VERSION = "0.1.0"
+  class Classes
+
+  end
 end
