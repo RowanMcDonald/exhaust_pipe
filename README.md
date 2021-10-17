@@ -1,8 +1,9 @@
-# ExhaustPipe
+# Exhaust Pipe
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/exhaust_pipe`. To experiment with that code, run `bin/console` for an interactive prompt.
+A helper library for managing tailwind class lists. 
 
-TODO: Delete this and the text above, and describe your gem
+This gem solves a couple problems you encounter working with tailwind
+
 
 ## Installation
 
@@ -22,7 +23,46 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### Generating a class list with the `tailwind` method
+
+```rb
+include ExhaustPipe
+
+tailwind("bg-red-100", "m-10")
+# => ExhaustPipe::TokenList("bg-red-100 m-10")
+```
+
+### Adding to a token list
+```rb
+classes = tailwind("bg-red-100", "m-10")
+# => ExhaustPipe::TokenList("bg-red-100 m-10")
+
+classes.add("w-10")
+# => ExhaustPipe::TokenList("bg-red-100 m-10 w-10")
+```
+
+If you add a class that will conflict with another class in the list it will raise an error (this is configurable
+
+```rb
+tailwind("bg-red-100", "m-10").add("m-12")
+# => ExhaustPipe::TokenConflictError("added class 'm-12' conflicts with existing class 'm-10'")
+```
+
+### Overriding a class in a classlist
+
+Sometimes, you will have a defined list of base styles (say in a component) but you'll want the user to be able to override a given style.
+
+```rb
+tailwind("bg-red-100", "m-10").override("m-12")
+# => ExhaustPipe::TokenList("bg-red-100 m-12")
+```
+
+## Configuration
+
+```rb
+ExhaustPipe.raise_errors = false
+```
+
 
 ## Development
 
@@ -32,7 +72,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/exhaust_pipe. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/exhaust_pipe/blob/main/CODE_OF_CONDUCT.md).
+Bug reports and pull requests are welcome on GitHub at https://github.com/RowanMcDonald/exhaust_pipe. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/exhaust_pipe/blob/main/CODE_OF_CONDUCT.md).
 
 ## License
 
