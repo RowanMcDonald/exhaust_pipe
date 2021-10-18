@@ -2,8 +2,8 @@
 
 A helper library for managing tailwind class lists. 
 
-This gem solves a couple problems you encounter working with tailwind
-
+This gem solves a couple problems you encounter working with tailwind.
+TODO: write up the issues with class conflict and surprising specificity.
 
 ## Installation
 
