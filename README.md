@@ -45,7 +45,7 @@ If you add a class that will conflict with another class in the list it will rai
 
 ```rb
 tailwind("bg-red-100", "m-10").add("m-12")
-# => ExhaustPipe::TokenConflictError("added class 'm-12' conflicts with existing class 'm-10'")
+# => ExhaustPipe::TokenConflictError
 ```
 
 ### Overriding a class in a classlist
@@ -62,6 +62,12 @@ tailwind("bg-red-100", "m-10").override("m-12")
 ```rb
 ExhaustPipe.raise_errors = false
 ```
+
+## TODO
+1. Benchmark
+1. Allow adding custom classes
+1. Support all default tailwind classes
+1. Specify use cases
 
 
 ## Development
