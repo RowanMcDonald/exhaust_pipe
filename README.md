@@ -38,11 +38,13 @@ Why does the `m-8` class win when it's passed in, but `m-0` not? This is because
 This behavior is described in a github issue here: https://github.com/tailwindlabs/tailwindcss/issues/1010
 
 ## What is the problem with this behavior?
-1. It fails silently.
+1. The order of css rule definitions is opaque to developers.
+2. Conflicts fail silently.
    1. Unnecessary classes make it past code review
    2. Developers have to root out the conflict themselves.
+3. Silent failures and unexpected effects make this behavior unfriendly to component based applications. 
 
-2. It isn't friendly to component based applications. In component based applications, we often want to allow developers to merge style lists. We want to be able to support two behaviors:
+In component based applications, we often want to allow developers to merge style lists. We want to be able to support two behaviors:
    1. Merge and raise errors about conflicts
    2. Merge and override the style (e.g. when we pass in the `m-0` class, we want to remove the `m-4` class.
 
@@ -104,6 +106,7 @@ tailwind("bg-red-100", "m-10").override("m-12")
 ### Usage with the view_component library
 
 TODO
+
 ## Configuration
 
 In certain environments (like production), you may want to turn off raising errors because a TokenConflictError is not important enough to raise.
