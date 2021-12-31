@@ -45,8 +45,8 @@ This behavior is described in a github issue here: https://github.com/tailwindla
 3. Silent failures and unexpected effects make this behavior unfriendly to component based applications. 
 
 In component based applications, we often want to allow developers to merge style lists. We want to be able to support two behaviors:
-   1. Merge and raise errors about conflicts
-   2. Merge and override the style (e.g. when we pass in the `m-0` class, we want to remove the `m-4` class.
+   1. Merge and raise errors about conflicts (e.g. when we pass in the `m-0` class we get an error telling us that it conflicts with the `m-4` class.)
+   2. Merge and override the style (e.g. when we pass in the `m-0` class, we want to remove the `m-4` class.)
 
 Side note, in Tailwind play, a warning will allert you to the cssConflict in the div above. I wish there was a tool to surface this via static analysis. (Although this is tricky b/c whatever tool you use has to understand your component system.)
 
