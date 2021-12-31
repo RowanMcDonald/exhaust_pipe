@@ -1,6 +1,7 @@
 # Exhaust Pipe
 
 A helper library for managing tailwind class lists. Intended for use in component based rails applications. The examples here use [view_component](https://github.com/github/view_component), but this should be applicable to any component system.
+
 ## The problem at hand
 A common issue that you encounter using tailwind in a component based application is class conflicts. Say you have a component "Box" that has a default margin and you allow passing in classes that will be applied to your component. Someone passes in a margin class. What happens?
 
@@ -35,12 +36,18 @@ If we pass in a `m-0` class, the `.m-4` rule has the highest specificity and tha
 Why does the `m-8` class win when it's passed in, but `m-0` not? This is because the `.m-8` rule is defined after the `.m-4` rule, which is defined after the `.m-0` rule.
 
 This behavior is described in a github issue here: https://github.com/tailwindlabs/tailwindcss/issues/1010
+
 ## What is the problem with this behavior?
-1. It fails silently.  
+1. It fails silently.
    1. Unnecessary classes make it past code review
    2. Developers have to root out the conflict themselves.
-   3. In tailwind play, they have implemented a warning to check for cssConflicts. The div above has a warning
-2. It isn't friendly to component based applications. In component based applications, we often want to allow developers to override 
+
+2. It isn't friendly to component based applications. In component based applications, we often want to allow developers to merge style lists. We want to be able to support two behaviors:
+   1. Merge and raise errors about conflicts
+   2. Merge and override the style (e.g. when we pass in the `m-0` class, we want to remove the `m-4` class.
+
+Side note, in Tailwind play, a warning will allert you to the cssConflict in the div above. I wish there was a tool to surface this via static analysis. (Although this is tricky b/c whatever tool you use has to understand your component system.)
+
 ## Installation
 
 Add this line to your application's Gemfile:
